@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CollabUs — Colaborador</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Paleta / tokens ===== */
+:root{
+  --brand:#6C63FF; --brand-600:#5146d9;
+  --accent:#FF7A30; --accent-600:#e8661c;
+  --success:#3BB273;
+  --bg:#F8FAFC; --surface:#fff;
+  --text:#1E293B; --muted:#64748B;
+  --border:rgba(30,41,59,.12);
+  --ring:rgba(108,99,255,.35);
+  --shadow:0 10px 28px rgba(2,6,23,.08);
+}
+*{box-sizing:border-box} body{margin:0;font-family:Raleway,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+
+/* ===== Topbar ===== */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
+.topbar .bar{display:flex;align-items:center;gap:12px;padding:14px 24px}
+.logo{font-weight:800;color:var(--brand);font-size:1.2rem}
+.top-actions{margin-left:auto;display:flex;gap:10px}
+.btn-outline-sm{padding:8px 14px;border-radius:999px;border:2px solid var(--brand);color:var(--brand);background:transparent;text-decoration:none;font-weight:800}
+.btn-outline-sm:hover{background:var(--brand);color:#fff}
+
+/* ===== Hero ===== */
+.hero{padding:56px 24px 28px;background:linear-gradient(135deg,#f3f5ff,#eef0ff)}
+.hero .wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.hero h1{font-size:2.3rem;margin:0 0 12px;font-weight:800;color:var(--brand)}
+.hero p{color:var(--muted);margin:0 0 18px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:12px;text-decoration:none;cursor:pointer}
+.btn-primary{padding:12px 18px;background:linear-gradient(180deg,var(--accent),var(--accent-600));color:#fff;box-shadow:0 12px 24px rgba(255,122,48,.28)}
+.btn-primary:hover{filter:saturate(1.05);transform:translateY(-1px)}
+.btn-brand{padding:12px 18px;background:var(--brand);color:#fff}
+.btn-brand:hover{background:var(--brand-600)}
+.hero-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.hero-list{display:grid;gap:10px;margin-top:8px}
+.hero-bullet{display:flex;align-items:center;gap:10px;color:var(--text)}
+.hero-bullet .dot{width:10px;height:10px;border-radius:50%;background:var(--success)}
+
+/* ===== Secciones ===== */
+.section{padding:40px 24px}
+.section h2{font-weight:800;color:var(--brand);margin:0 0 18px}
+
+/* ===== Beneficios ===== */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.card h3{margin:2px 0 8px}
+.card p{margin:0;color:var(--muted)}
+.card .icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#6C63FF22;color:var(--brand);font-size:20px;margin-bottom:8px}
+
+/* ===== Pasos ===== */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;text-align:center}
+.step .num{width:32px;height:32px;border-radius:999px;background:var(--brand);color:#fff;display:grid;place-items:center;margin:0 auto 8px;font-weight:800}
+
+/* ===== Band CTA ===== */
+.band{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.band .cta-card{position:relative;height:160px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.16);overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;color:#fff;font-weight:800}
+.band .cta-card h3{margin:0}
+.band .cta-card .arrow{font-size:1.8rem}
+.cta-explorar{background-image:linear-gradient(rgba(108,99,255,.75),rgba(108,99,255,.75)),url('public/assets/img/colaborador.jpg');background-size:cover;background-position:center}
+.cta-perfil{background-image:linear-gradient(rgba(255,122,48,.75),rgba(255,122,48,.75)),url('public/assets/img/perfil-team.jpg');background-size:cover;background-position:center}
+
+/* ===== Accordion ===== */
+.accordion{display:grid;gap:10px}
+.acc-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;font-weight:800;cursor:pointer;color:var(--brand)}
+.acc-body{padding:0 16px 14px 16px;display:none;color:var(--muted)}
+.acc-item.active .acc-body{display:block}
+
+/* ===== Footer ===== */
+.footer{margin-top:24px;padding:20px;text-align:center;color:var(--muted);border-top:1px solid var(--border);background:var(--surface)}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px){
+  .hero .wrap{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .band{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  .grid-3{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="bar">
+    <div class="logo">CollabUs</div>
+    <div class="top-actions">
+      <a class="btn-outline-sm" href="../index.html">Inicio</a>
+      <a class="btn-outline-sm" href="./loginusuario.html">Ingresar</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Súmate a proyectos y potencia tu reputación</h1>
+      <p>Como <b>Colaborador</b> puedes unirte a iniciativas, demostrar tu talento con evidencias y crecer en el ranking de la comunidad.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="RegistroUser.html">Crear mi perfil</a>
+        <a class="btn btn-brand" href="#beneficios">Ver beneficios</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <b>¿Qué puedes hacer aquí?</b>
+      <div class="hero-list">
+        <div class="hero-bullet"><span class="dot"></span>Postular a proyectos afines a tus habilidades. <span style="color:#94a3b8;margin-left:auto">US006–US007</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Publicar evidencias y entregables. <span style="color:#94a3b8;margin-left:auto">US010–US011</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Gestionar tu perfil y actividad. <span style="color:#94a3b8;margin-left:auto">US021–US022</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Buscar proyectos por categoría y palabra clave. <span style="color:#94a3b8;margin-left:auto">US023</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Recibir notificaciones de cambios y avances. <span style="color:#94a3b8;margin-left:auto">US024</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Escalar en el ranking de colaboradores. <span style="color:#94a3b8;margin-left:auto">US025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Beneficios -->
+<section id="beneficios" class="section container">
+  <h2>Beneficios para Colaboradores</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Proyectos a tu medida</h3>
+      <p>Encuentra iniciativas según tu perfil, especialidad e intereses para sumar valor real.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🤝</div>
+      <h3>Ingreso ágil</h3>
+      <p>Envía solicitudes con tus habilidades y súmate al equipo cuando el creador te acepte.</p>
+    </div>
+    <div class="card">
+      <div class="icon">📁</div>
+      <h3>Portafolio vivo</h3>
+      <p>Publica entregables y evidencias que demuestran tu aporte en cada proyecto.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🏆</div>
+      <h3>Reputación y ranking</h3>
+      <p>Gana credibilidad según tu desempeño y evidencias aprobadas.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🔔</div>
+      <h3>Notificaciones útiles</h3>
+      <p>Mantente al día con cambios, invitaciones y feedback del equipo.</p>
+    </div>
+    <div class="card">
+      <div class="icon">👤</div>
+      <h3>Perfil gestionable</h3>
+      <p>Actualiza tu experiencia y fortalezas para mejorar la afinidad con proyectos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Cómo funciona -->
+<section class="section container">
+  <h2>¿Cómo funciona?</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <b>Crea tu perfil</b>
+      <p class="muted">Completa tu información y habilidades clave.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <b>Postula a proyectos</b>
+      <p class="muted">Envía solicitud y presenta tu propuesta de valor.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <b>Entrega y evidencia</b>
+      <p class="muted">Publica avances y entregables para sumar reputación.</p>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <b>Escala en el ranking</b>
+      <p class="muted">Mejora tu visibilidad con resultados consistentes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTAs horizontales -->
+<section class="section container">
+  <div class="band">
+    <a class="cta-card cta-explorar" href="loginusuario.html">
+      <h3>Explorar proyectos disponibles</h3>
+      <span class="arrow"-></span>
+    </a>
+    <a class="cta-card cta-perfil" href="loginusuario.html">
+      <h3>Crear / mejorar mi perfil</h3>
+      <span class="arrow">-></span>
+    </a>
+  </div>
+</section>
+
+<!-- FAQs -->
+<section class="section container">
+  <h2>Preguntas frecuentes</h2>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-head">¿Cómo aumento mi reputación?</div>
+      <div class="acc-body">Publica evidencias de calidad, cumple hitos y solicita feedback. La constancia y la claridad elevan tu ranking.</div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-head">¿Puedo estar en varios proyectos?</div>
+      <div class="acc-body">Sí, siempre que cumplas tiempos y entregables. Tu panel te ayuda a priorizar y organizar tareas.</div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-head">¿Qué revisa el creador para aceptarme?</div>
+      <div class="acc-body">Tu experiencia, habilidades, evidencias previas y tu propuesta. Mantén tu perfil actualizado para mejorar compatibilidad.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">© 2025 CollabUs — Colaboradores que convierten ideas en resultados.</div>
+
+<script>
+// Acordeón simple
+document.querySelectorAll('.acc-head').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('active'));
+});
+</script>
+</body>
+</html>
