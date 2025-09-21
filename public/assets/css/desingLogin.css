@@ -1,0 +1,209 @@
+/* ===== Paleta del tema ===== */
+:root{
+  --brand:#6C63FF; --brand-600:#5146d9;
+  --accent:#FF7A30; --accent-600:#e8661c;
+  --bg:#F8FAFC; --surface:#FFFFFF;
+  --text:#1E293B; --muted:#64748B;
+  --border:rgba(30,41,59,.12);
+  --ring: rgba(108,99,255,.35);
+  --shadow:0 10px 24px rgba(0,0,0,.10);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:"Fira Sans Book","Raleway",system-ui,-apple-system,sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.5;
+}
+
+/* ===== Top nav ===== */
+nav{
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 24px; background:var(--surface);
+  border-bottom:1px solid var(--border);
+}
+nav .logo{height:36px}
+nav .element{
+  color:var(--brand); font-weight:700; text-decoration:none;
+  padding:8px 14px; border-radius:10px; border:1px solid var(--brand);
+}
+nav .element:hover{ background:var(--brand); color:#fff }
+
+/* ===== Layout ===== */
+.login-pym{
+  min-height:calc(100dvh - 70px);
+  display:grid; place-items:center; padding:32px 16px;
+}
+.contenedor2{
+  width:100%; max-width:460px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:28px;
+}
+.titulo2{
+  margin:0 0 10px 0; text-align:center; font-weight:800; color:var(--brand);
+}
+
+.login1{ display:grid; gap:14px; margin-top:10px; }
+.log p{ margin:0 0 8px 0; color:var(--muted); font-weight:700; }
+.cuadrotexto,.pas{
+  width:100%; padding:12px 14px; border-radius:12px;
+  border:1.5px solid var(--border); background:#fff; color:var(--text);
+  outline:none; transition:border-color .15s ease, box-shadow .15s ease;
+}
+.cuadrotexto:focus,.pas:focus{
+  border-color:var(--brand); box-shadow:0 0 0 3px var(--ring);
+}
+
+/* Enlace recuperar */
+.recover-link{
+  display:inline-block; margin-top:8px;
+  color:var(--brand); text-decoration:none; font-weight:700;
+}
+.recover-link:hover{ color:var(--brand-600) }
+
+/* ===== Botones ===== */
+.btn-primary{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:100%; padding:12px 16px; margin-top:16px;
+  border:0; border-radius:12px; cursor:pointer; font-weight:800;
+  background:linear-gradient(180deg,var(--accent) 0%, var(--accent-600) 100%);
+  color:#fff; box-shadow:0 12px 24px rgba(255,122,48,.28);
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn-primary:hover{ transform:translateY(-1px); box-shadow:0 16px 28px rgba(255,122,48,.32); }
+.btn-primary:active{ transform:translateY(0); box-shadow:0 8px 18px rgba(255,122,48,.24); }
+.btn-primary:focus-visible{ outline:none; box-shadow:0 0 0 3px var(--ring), 0 12px 24px rgba(255,122,48,.28); }
+
+.btn-outline{
+  display:inline-block; width:100%; text-align:center; margin-top:12px;
+  padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:800;
+  border:2px solid var(--brand); color:var(--brand); background:transparent;
+  transition:all .2s ease;
+}
+.btn-outline:hover{ background:var(--brand); color:#fff; }
+
+/* ===== Modal recuperar ===== */
+.recover-modal{
+  position:fixed; inset:0; background:rgba(30,41,59,.55);
+  display:none; align-items:center; justify-content:center;
+  padding:16px; z-index:50;
+}
+.recover-modal.active{ display:flex; }
+.recover-box{
+  width:100%; max-width:420px; background:var(--surface); color:var(--text);
+  border-radius:16px; border:1px solid var(--border); box-shadow:var(--shadow);
+  padding:22px; position:relative;
+}
+.close-recover{
+  position:absolute; top:10px; right:12px; cursor:pointer;
+  font-size:22px; color:var(--muted);
+}
+.close-recover:hover{ color:var(--text) }
+.recover-box input{
+  width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid var(--border);
+  margin:10px 0 12px 0;
+}
+.recover-box input:focus{ border-color:var(--brand); box-shadow:0 0 0 3px var(--ring); }
+
+/* ===== Footer ===== */
+footer .final{
+  text-align:center; padding:14px; color:var(--muted);
+  border-top:1px solid var(--border); background:var(--surface);
+}
+/* ===== Enlaces debajo del form ===== */
+.recover-link,
+#btn-register {
+  color: #6C63FF;              /* morado de marca */
+  font-weight: 700;
+  text-decoration: none;
+}
+.recover-link:hover,
+#btn-register:hover { color: #5146d9; text-decoration: underline; }
+
+/* Colocar enlaces y botón en una fila agradable (opcional) */
+.login-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* ===== Botón Ingresar ===== */
+.btn-primary{
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 100%;                  /* ocupa todo el ancho de la card */
+  background: linear-gradient(180deg, #FF7A30 0%, #e8661c 100%);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(255,122,48,.28);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  margin-top: 12px;             /* separarlo de los enlaces */
+}
+.btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 16px 28px rgba(255,122,48,.32); }
+.btn-primary:active{ transform: translateY(0); box-shadow: 0 8px 18px rgba(255,122,48,.24); }
+.btn-primary:focus-visible{ outline: none; box-shadow: 0 0 0 3px rgba(108,99,255,.35), 0 12px 24px rgba(255,122,48,.28); }
+
+/* ===== Botón “Regístrate” (outline) ===== */
+.btn-outline{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid #6C63FF;
+  color: #6C63FF;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+.btn-outline:hover{ background:#c6c6cd; color:#fff; }
+
+/* ===== Card visual: que flote un poquito más como en tu captura ===== */
+.contenedor2{
+  box-shadow: 0 18px 40px rgba(2, 6, 23, .10);
+  border: 1px solid rgba(30,41,59,.10);
+}
+
+/* ===== Inputs: asegurar mismo estilo en todos los navegadores ===== */
+.cuadrotexto, .pas{
+  -webkit-appearance: none;
+  appearance: none;
+  background: #fff;
+}
+/* Botón principal de login */
+.btnBanner {
+  display: block;
+  width: 100%;               /* ocupa todo el ancho del form */
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: #6C63FF;       /* morado principal */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+}
+
+.btnBanner:hover {
+  background: #5146d9;       /* morado más oscuro */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(108, 99, 255, 0.4);
+}
+
+.btnBanner:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(108, 99, 255, 0.2);
+}

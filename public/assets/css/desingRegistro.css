@@ -1,0 +1,198 @@
+/* ===== Reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===== Paleta del tema ===== */
+:root{
+  --brand:#6C63FF;         /* morado */
+  --brand-600:#5146d9;
+  --accent:#FF7A30;        /* naranja (CTA) */
+  --accent-600:#e8661c;
+  --bg:#F8FAFC;            /* fondo */
+  --surface:#FFFFFF;       /* tarjetas */
+  --text:#1E293B;          /* texto principal */
+  --muted:#64748B;         /* texto secundario */
+  --border:rgba(30,41,59,.12);
+  --ring:rgba(108,99,255,.35);
+  --shadow:0 10px 28px rgba(2,6,23,.08);
+}
+
+body{
+  font-family:'Fira Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+
+/* ===== Layout ===== */
+.register-container{
+  display:flex; justify-content:center; align-items:center;
+  flex:1; padding:40px 20px;
+}
+.register-card{
+  display:flex; flex-wrap:wrap;
+  background:var(--surface);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  max-width:900px; width:100%;
+}
+
+/* ===== Lado izquierdo (imagen + regresar) ===== */
+.image-section{
+  background: linear-gradient(180deg, #f3f5ff, #eef4ff);
+  padding:30px; flex:1 1 300px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+  border-right:1px solid var(--border);
+}
+.image-section img{ width:200px; height:auto; }
+
+/* Botón Regresar (outline morado) */
+.btn-back{
+  display:inline-block;
+  padding:10px 24px;
+  font-size:16px; font-weight:700;
+  color:var(--brand);
+  background:transparent;
+  border:2px solid var(--brand);
+  border-radius:999px;
+  text-decoration:none;
+  transition:all .2s ease;
+  box-shadow:0 4px 10px rgba(108,99,255,.15);
+}
+.btn-back:hover{ background:var(--brand); color:#fff; transform:translateY(-1px); }
+
+/* ===== Formulario ===== */
+.form-section{ flex:1 1 400px; padding:40px; }
+.form-section h2{
+  margin-bottom:18px; font-size:28px; font-weight:800; color:var(--brand);
+}
+
+form{ display:flex; flex-direction:column; gap:16px; }
+label{ font-weight:800; font-size:15px; color:var(--text); }
+input{
+  padding:12px 14px; font-size:16px;
+  background:#fff; color:var(--text);
+  border:1.5px solid var(--border); border-radius:12px;
+  outline:none; transition:border-color .15s ease, box-shadow .15s ease;
+}
+input::placeholder{ color:#94A3B8; }
+input:focus{ border-color:var(--brand); box-shadow:0 0 0 3px var(--ring); }
+
+/* ===== Selector de rol (Emprendedor / Colaborador) ===== */
+.role-group{
+  margin: 6px 0 6px;
+  padding:14px;
+  border:1px dashed var(--border);
+  border-radius:14px;
+  background:linear-gradient(180deg,#ffffff,#fafbff);
+  display:grid; grid-template-columns:1fr 1fr; gap:12px;
+}
+.role-group legend{
+  font-weight:800; color:var(--brand); padding:0 6px; margin-bottom:8px;
+}
+.role-option{ display:block; cursor:pointer; }
+.role-option>input{ position:absolute; opacity:0; pointer-events:none; }
+.role-card{
+  display:flex; align-items:center; gap:12px;
+  padding:14px; border:1.5px solid var(--border); border-radius:14px; background:var(--surface);
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease, background .2s ease;
+}
+.role-icon{
+  width:42px;height:42px; flex:0 0 42px;
+  display:grid; place-items:center;
+  border-radius:50%;
+  background:#6C63FF22; color:var(--brand); font-size:20px;
+}
+.role-text strong{ display:block; color:var(--text); }
+.role-text small{ color:var(--muted); }
+
+.role-option:hover .role-card{
+  border-color:var(--brand);
+  box-shadow:0 10px 22px rgba(108,99,255,.12);
+  transform:translateY(-1px);
+}
+.role-option>input:checked + .role-card{
+  border-color:var(--brand);
+  background:linear-gradient(180deg,#ffffff,#f4f5ff);
+  box-shadow:0 0 0 3px var(--ring);
+}
+
+/* ===== Botón Guardar (CTA naranja) ===== */
+.btn-save{
+  margin-top: 4px;
+  padding:12px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-600) 100%);
+  color:#fff; font-weight:800; font-size:16px;
+  border:0; border-radius:12px; cursor:pointer;
+  transition:transform .18s ease, box-shadow .18s ease;
+  box-shadow:0 12px 24px rgba(255,122,48,.28);
+}
+.btn-save:hover{ transform:translateY(-1px); box-shadow:0 16px 28px rgba(255,122,48,.32); }
+.btn-save:active{ transform:translateY(0); box-shadow:0 8px 18px rgba(255,122,48,.24); }
+.btn-save:focus-visible{ outline:none; box-shadow:0 0 0 3px var(--ring), 0 12px 24px rgba(255,122,48,.28); }
+
+/* ===== Footer ===== */
+footer{
+  background:#EEF4FF;
+  border-top:1px solid var(--border);
+  padding:15px; text-align:center; font-size:16px; color:var(--muted);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px){
+  .register-card{ flex-direction:column; align-items:center; }
+  .form-section{ padding:30px 20px; }
+  .image-section{
+    padding:20px 20px 15px; /* Reducimos el padding superior e inferior */
+    border-right:0;
+    border-bottom:1px solid var(--border);
+    order: 2; /* Cambiamos el orden para que aparezca después del formulario */
+    background: transparent; /* Eliminamos el fondo gradiente */
+    gap: 8px; /* Reducimos el espacio entre elementos */
+  }
+  .role-group{ grid-template-columns:1fr; }
+
+  /* Hacemos que el logo desaparezca gradualmente */
+  .image-section img {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    transition: opacity 0.3s ease, height 0.3s ease, width 0.3s ease;
+  }
+
+  /* Botón Regresar en modo responsive - sin fondo */
+  .btn-back {
+    background: transparent;
+    box-shadow: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px; /* Reducimos el margen superior */
+    margin-bottom: 5px; /* Añadimos margen inferior para separación consistente */
+    border: 2px solid var(--brand); /* Mantenemos el borde para consistencia */
+    padding: 10px 16px; /* Ajustamos el padding para que coincida con el botón Guardar */
+  }
+
+  /* Aseguramos que el botón de regresar se alinee con el de guardar */
+  .image-section {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Para que los elementos ocupen todo el ancho */
+  }
+
+  /* Ajustamos el hover para modo responsive */
+  .btn-back:hover {
+    background: var(--brand);
+    color: #fff;
+  }
+
+  /* Reducimos el padding del contenedor principal en móviles */
+  .register-container {
+    padding: 20px 15px;
+  }
+}
+
+/* Para transiciones suaves en dispositivos móviles */
+.image-section img {
+  transition: opacity 0.3s ease, height 0.3s ease, width 0.3s ease;
+}
