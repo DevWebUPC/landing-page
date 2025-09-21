@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CollabUs — Emprendedor</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Paleta del tema ===== */
+:root{
+  --brand:#6C63FF; --brand-600:#5146d9;
+  --accent:#FF7A30; --accent-600:#e8661c;
+  --success:#3BB273;
+  --bg:#F8FAFC; --surface:#fff;
+  --text:#1E293B; --muted:#64748B;
+  --border:rgba(30,41,59,.12);
+  --ring:rgba(108,99,255,.35);
+  --shadow:0 10px 28px rgba(2,6,23,.08);
+}
+*{box-sizing:border-box}body{margin:0;font-family:Raleway,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text)}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+
+/* ===== Header simple ===== */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
+.topbar .bar{display:flex;align-items:center;gap:12px;padding:14px 24px}
+.logo{font-weight:800;color:var(--brand);font-size:1.2rem}
+.top-actions{margin-left:auto;display:flex;gap:10px}
+.btn-outline-sm{padding:8px 14px;border-radius:999px;border:2px solid var(--brand);color:var(--brand);background:transparent;text-decoration:none;font-weight:800}
+.btn-outline-sm:hover{background:var(--brand);color:#fff}
+
+/* ===== Hero ===== */
+.hero{padding:56px 24px 28px;background:linear-gradient(135deg,#f3f5ff, #eef0ff)}
+.hero .wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center}
+.hero h1{font-size:2.3rem;margin:0 0 12px;font-weight:800;color:var(--brand)}
+.hero p{color:var(--muted);margin:0 0 18px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-weight:800;border-radius:12px;text-decoration:none;cursor:pointer}
+.btn-primary{padding:12px 18px;background:linear-gradient(180deg,var(--accent),var(--accent-600));color:#fff;box-shadow:0 12px 24px rgba(255,122,48,.28)}
+.btn-primary:hover{filter:saturate(1.05);transform:translateY(-1px)}
+.btn-brand{padding:12px 18px;background:var(--brand);color:#fff}
+.btn-brand:hover{background:var(--brand-600)}
+.hero-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.hero-list{display:grid;gap:10px;margin-top:8px}
+.hero-bullet{display:flex;align-items:center;gap:10px;color:var(--text)}
+.hero-bullet .dot{width:10px;height:10px;border-radius:50%;background:var(--success)}
+
+/* ===== Sección beneficios ===== */
+.section{padding:40px 24px}
+.section h2{font-weight:800;color:var(--brand);margin:0 0 18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.card h3{margin:2px 0 8px}
+.card p{margin:0;color:var(--muted)}
+.card .icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#6C63FF22;color:var(--brand);font-size:20px;margin-bottom:8px}
+
+/* ===== Como funciona ===== */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px;text-align:center}
+.step .num{width:32px;height:32px;border-radius:999px;background:var(--brand);color:#fff;display:grid;place-items:center;margin:0 auto 8px;font-weight:800}
+
+/* ===== Bloques enlazados (cards horizontales) ===== */
+.band{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.band .cta-card{position:relative;height:160px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.16);overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:22px 26px;color:#fff;font-weight:800}
+.band .cta-card h3{margin:0}
+.band .cta-card .arrow{font-size:1.8rem}
+.cta-empr{background-image:linear-gradient(rgba(108,99,255,.75),rgba(108,99,255,.75)),url('public/assets/img/emprendedor.jpg');background-size:cover;background-position:center}
+.cta-colab{background-image:linear-gradient(rgba(255,122,48,.75),rgba(255,122,48,.75)),url('public/assets/img/colaborador.jpg');background-size:cover;background-position:center}
+
+/* ===== FAQs ===== */
+.accordion{display:grid;gap:10px}
+.acc-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;font-weight:800;cursor:pointer;color:var(--brand)}
+.acc-body{padding:0 16px 14px 16px;display:none;color:var(--muted)}
+.acc-item.active .acc-body{display:block}
+
+/* ===== Footer ===== */
+.footer{margin-top:24px;padding:20px;text-align:center;color:var(--muted);border-top:1px solid var(--border);background:var(--surface)}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px){
+  .hero .wrap{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .band{grid-template-columns:1fr}
+}
+@media (max-width: 640px){
+  .grid-3{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="topbar">
+  <div class="bar">
+    <div class="logo">CollabUs</div>
+    <div class="top-actions">
+      <a class="btn-outline-sm" href="../index.html">Inicio</a>
+      <a class="btn-outline-sm" href="loginusuario.html">Ingresar</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Conecta tu idea con talento y financiamiento</h1>
+      <p>Como <b>Emprendedor</b> puedes crear un proyecto, sumar colaboradores, publicar evidencias, medir avances y habilitar financiamiento comunitario.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="RegistroUser.html">Crear mi proyecto</a>
+        <a class="btn btn-brand" href="#beneficios">Ver beneficios</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <b>¿Qué puedes hacer aquí?</b>
+      <div class="hero-list">
+        <div class="hero-bullet"><span class="dot"></span>Publica tu proyecto y objetivos. <span style="color:#94a3b8;margin-left:auto">US004–US005</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Invita y acepta colaboradores. <span style="color:#94a3b8;margin-left:auto">US006–US007</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Activa aportes y financiamiento. <span style="color:#94a3b8;margin-left:auto">US008–US009</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Publica evidencias y gana reputación. <span style="color:#94a3b8;margin-left:auto">US010–US011</span></div>
+        <div class="hero-bullet"><span class="dot"></span>Consulta métricas y recibe notificaciones. <span style="color:#94a3b8;margin-left:auto">US024–US026</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Beneficios -->
+<section id="beneficios" class="section container">
+  <h2>Beneficios para Emprendedores</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>Publica y valida tu idea</h3>
+      <p>Crea tu iniciativa con título, descripción y objetivos claros. Hazla visible a la comunidad para obtener feedback temprano. </p>
+    </div>
+    <div class="card">
+      <div class="icon">🤝</div>
+      <h3>Forma tu equipo</h3>
+      <p>Recibe solicitudes de unión, evalúa perfiles y arma un equipo multidisciplinario para acelerar el desarrollo.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💰</div>
+      <h3>Financiamiento comunitario</h3>
+      <p>Habilita aportes monetarios, registra transacciones y sigue lo recaudado de forma transparente. </p>
+    </div>
+    <div class="card">
+      <div class="icon">📈</div>
+      <h3>Métricas y panel</h3>
+      <p>Consulta rendimiento, avances y metas desde un panel con indicadores claros.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🏆</div>
+      <h3>Reputación por evidencias</h3>
+      <p>Publica entregables/evidencias y aumenta la credibilidad del proyecto y de tus colaboradores. </p>
+    </div>
+    <div class="card">
+      <div class="icon">🔔</div>
+      <h3>Notificaciones y seguimiento</h3>
+      <p>Recibe alertas sobre solicitudes, aportes y cambios clave en tu iniciativa. </p>
+    </div>
+  </div>
+</section>
+
+<!-- Cómo funciona -->
+<section class="section container">
+  <h2>¿Cómo funciona?</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="num">1</div>
+      <b>Crea tu proyecto</b>
+      <p class="muted">Define título, descripción, objetivos y categorías.</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <b>Invita o recibe colaboradores</b>
+      <p class="muted">Evalúa perfiles, habilidades y acepta solicitudes.</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <b>Publica avances</b>
+      <p class="muted">Sube evidencias y mejora la reputación del equipo.</p>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <b>Activa financiamiento</b>
+      <p class="muted">Permite aportes y monitorea lo recaudado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Cards horizontales con enlaces -->
+<section class="section container">
+  <div class="band">
+    <a class="cta-card cta-empr" href="loginusuario.html">
+      <h3>Quiero publicar mi proyecto</h3>
+      <span class="arrow">-></span>
+    </a>
+    <a class="cta-card cta-colab" href="loginusuario.html">
+      <h3>Busco colaboradores</h3>
+      <span class="arrow">-></span>
+    </a>
+  </div>
+</section>
+
+<!-- FAQs -->
+<section class="section container">
+  <h2>Preguntas frecuentes</h2>
+  <div class="accordion">
+    <div class="acc-item">
+      <div class="acc-head">¿Qué necesito para crear un proyecto?</div>
+      <div class="acc-body">Solo un perfil básico y la información mínima: título, descripción, objetivos y categoría. Luego podrás editar todo desde el panel.</div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-head">¿Cómo se administra el financiamiento?</div>
+      <div class="acc-body">La plataforma procesa el pago, registra cada aporte y actualiza las métricas del proyecto. Podrás ver el historial y exportarlo.</div>
+    </div>
+    <div class="acc-item">
+      <div class="acc-head">¿Cómo se calcula la reputación?</div>
+      <div class="acc-body">Se basa en evidencias aprobadas, hitos cumplidos y feedback de colaboradores. Mostrar avances constantes aumenta tu credibilidad.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">© 2025 CollabUs — Emprendedores que transforman ideas en impacto.</div>
+
+<script>
+// Acordeón simple
+document.querySelectorAll('.acc-head').forEach(h=>{
+  h.addEventListener('click',()=>{
+    h.parentElement.classList.toggle('active');
+  });
+});
+</script>
+</body>
+</html>
