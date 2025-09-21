@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Usuario</title>
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="stylesheet" href="assets/css/desingLogin.css">
+  <link href="https://fonts.cdnfonts.com/css/sunflower-2" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/fira-sans-book" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <img class="logo" src="assets/img/logo.png" alt="Logo">
+    <ul>
+      <a class="element" href="../index.html">Regresar</a>
+    </ul>
+  </nav>
+
+  <section class="login-pym">
+    <div class="contenedor2">
+      <h1 class="titulo2">Iniciar Sesión</h1>
+
+      <div class="login1">
+        <div class="log">
+          <p>Correo electrónico</p>
+          <input type="email" id="email" class="cuadrotexto" placeholder="ejemplo123@gmail.com" required>
+        </div>
+        <div class="log">
+          <p>Contraseña</p>
+          <input type="password" id="password" class="pas" placeholder="••••••" required>
+        </div>
+      </div>
+
+      <a class="recover-link" href="javascript:void(0)" onclick="abrirModal()">¿Olvidaste tu contraseña?</a>
+
+
+      <!-- Botón corregido -->
+      <button id="btn-login" class="btnBanner" onclick="validarCredenciales()">Ingresar</button>
+
+      <a href="RegistroUser.html" id="btn-register" class="btn-outline">¿No tienes cuenta? Regístrate</a>
+    </div>
+  </section>
+
+  <!-- Modal para recuperación -->
+<div id="recoverModal" class="recover-modal" role="dialog" aria-modal="true" aria-labelledby="recoverTitle">
+  <div class="recover-box">
+    <span class="close-recover" aria-label="Cerrar" onclick="cerrarModal()">×</span>
+    <h2 id="recoverTitle">Recuperar contraseña</h2>
+    <p>Ingresa tu correo electrónico:</p>
+    <input type="email" id="recoverEmail" placeholder="ejemplo@gmail.com">
+    <button class="btn-primary" type="button" onclick="enviarRecuperacion()">Enviar</button>
+  </div>
+</div>
+
+
+  <footer>
+    <section class="final">
+      <small><b>Todos los derechos reservados CollabUs&copy; 2025</b></small>
+    </section>
+  </footer>
+
+
+<script>
+  // Utilidades
+  const $ = (sel)=>document.querySelector(sel);
+
+  function validarEmail(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  function validarCredenciales(){
+    const email = $("#email").value.trim();
+    const password = $("#password").value.trim();
+
+    if(!email || !password) return alert("Por favor, complete ambos campos.");
+    if(!validarEmail(email)) return alert("Ingrese un correo válido.");
+
+    // Demo (simulado)
+    if(email === "usuario@demo.com" && password === "123456"){
+      window.location.href = "homecolabo.html";//Aca se linkea y lleva a la pagina principal
+    } else if (email === "DocErnesto@ViBlock.com" && password === "123456"){
+      window.location.href = "----.html";
+    } else {
+      alert("Correo o contraseña incorrectos.");
+    }
+  }
+
+  // Modal recuperar
+  const modal = $("#recoverModal");
+  function abrirModal(){ modal.classList.add("active"); $("#recoverEmail")?.focus(); }
+  function cerrarModal(){ modal.classList.remove("active"); }
+
+  function enviarRecuperacion(){
+    const mail = $("#recoverEmail").value.trim();
+    if(!validarEmail(mail)) return alert("Ingresa un correo válido.");
+    alert("Te enviamos un enlace de recuperación si el correo existe en el sistema.");
+    cerrarModal();
+  }
+
+  // Cerrar modal con ESC y click fuera
+  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") cerrarModal(); });
+  modal?.addEventListener("click", (e)=>{ if(e.target === modal) cerrarModal(); });
+</script>
+
+</body>
+
+</html>
