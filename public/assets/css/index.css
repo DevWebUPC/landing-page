@@ -964,36 +964,51 @@ footer {
 
 /* Cards (blancas con sombra) */
 .logo-card {
-  width: 180px;       /* ajusta si quieres más grande/pequeño */
-  height: 170px;
+  /* Eliminamos width y height fijos */
+  min-width: 150px; /* ancho mínimo en lugar de fijo */
+  max-width: 300px; /* ancho máximo opcional */
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  display: grid;
-  padding: 16px 16px 0 16px;      /* borde interior para respirar */
-  overflow: hidden;   /* evita que la imagen se salga */
-  justify-items: center;
-  object-fit: contain;
-
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  /* Permite que crezca según contenido */
+  flex: 0 0 auto; /* importante para carousel */
+  margin: 0 8px; /* espacio entre cards */
 }
 .logo-card img {
-  max-width: 80%;
-  height: 100px;
+  max-width: 100%; /* ocupa el ancho disponible */
+  height: auto; /* altura automática */
+  max-height: 120px; /* límite máximo opcional */
   object-fit: contain;
   filter: saturate(0.85) contrast(1.05);
+  margin-bottom: 12px;
 }
 
-.logo-card p {
+.logo-card h5 {
   color: #5146d9;
   font-weight: 700;
   text-align: center;
   object-fit: contain;
+  word-wrap: break-word;
+  padding-bottom: 10px;
+}
+
+.logo-card p {
+  color: #394B61;
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.4;
 }
 
 /* Responsivo: cantidad visible aproximada */
-@media (max-width: 1100px) { .logo-card { width: 200px; height: 170px;} }
-@media (max-width: 900px)  { .logo-card { width: 180px; height: 150px; } }
-@media (max-width: 640px)  { .logo-card { width: 160px; height: 150px; } }
+@media (max-width: 1100px) { .logo-card { min-width: 140px; max-width: 250px;} }
+@media (max-width: 900px)  { .logo-card { min-width: 130px; max-width: 220px; } }
+@media (max-width: 640px)  { .logo-card { min-width: 120px; max-width: 200px; } }
 
 /* Flechas */
 .carousel-btn {
